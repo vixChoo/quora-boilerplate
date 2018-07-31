@@ -35,6 +35,7 @@ get '/login' do #get to show the page
       erb :"signup"
       # what should happen if the user keyed in invalid date?
     end
+  end
     
     post '/login' do
       user = User.find_by_email(params[:email])
@@ -44,8 +45,8 @@ get '/login' do #get to show the page
         erb :"login" 
         # errors.add(email: { message: "Try again" })
       end
+    end
 
-end
 #get is get something from database
 #post is edit and store into database
   #  get '/students' do

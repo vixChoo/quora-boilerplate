@@ -21,9 +21,9 @@ get '/signup' do #get to show the page
     erb :"signup" 
 end
 
-# get '/login' do #get to show the page
-#     erb :"login" 
-#   end
+get '/login' do #get to show the page
+    erb :"login" 
+  end
   
   post '/signup' do
     user = User.new(params[:user])
@@ -36,14 +36,14 @@ end
       # what should happen if the user keyed in invalid date?
     end
     
-    # post '/login' do
-    #   user = User.find_by_email(params[:email])
-    #   if user.password == params[:password]
-    #     redirect "/"
-    #   else
-    #     erb :"login" 
-    #     # errors.add(email: { message: "Try again" })
-    #   end
+    post '/login' do
+      user = User.find_by_email(params[:email])
+      if user.password == params[:password]
+        redirect "/"
+      else
+        erb :"login" 
+        # errors.add(email: { message: "Try again" })
+      end
 
 end
 #get is get something from database

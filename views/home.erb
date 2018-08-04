@@ -1,16 +1,55 @@
-<%# <%= stylesheet_link_tag "style.css" %>
+<%# <%= stylesheet_link_tag "/style.css" %>
+<%# <%= means is showing  without = is not showing > %>
+
+<div class= "greet">
+        <p> A place to BULLSHIT and better understand the world</p>
+            <br>
+        <%= @greeting %>
+        <aside>
+            <h2>Top Nasty Users</h2>
+            <% @names.each do |i|%>
+       <h3><a href="/profile/<%= i.id %>"><%=" #{i.username}"%></a></h3>
+            <form onsubmit="return confirm('Are you sure?')" action="/user/<%= i.id %>/delete" method="post">
+                        <input id="hidden" type="hidden" name="_method" value="delete">
+                        <br>
+                        <input type="submit" value="Delete" >
+            </form>
+
+        
+
+            <% end  %>
+</div>
+
+</aside>
+<div class="ask">
+    <h2>Top Bullshit Questions</h2>
+    <h2>Title</h2>
+
+       
+  <% @ask.each do |q|%>
+        
+        <% if current_user.id != q.user_id %>
+            <h3><a href="/question/<%= q.id %>"><%= " #{q.title} " %></a><br></h3>
+                    
+       
+
+     
+             <br>
+        <% else %>
+            <h3><a href="/question/<%= q.id %>"><%= " #{q.title} " %></a><br></h3>
+            <form onsubmit="return confirm('Are you sure?')" action="/question/<%= q.id %>/delete" method="post">
+                        <input id="hidden" type="hidden" name="_method" value="delete">
+                        <br>
+                        <input type="submit" value="Delete" >
+            </form>
+
+        <% end  %>  
+    <% end  %>  
+
+	</div>
 
 
-<h1>Quora Clone</h1>
-
-
-<%= "Welcome #{@name}!" %>
-
-
-
-<%= @greeting %>
-
-
+<footer>
 <%= "Current date is #{@date}" %>
-
+</footer>
 

@@ -1,0 +1,83 @@
+        
+                 <% if @user.id = @question.user_id  %>
+                   
+
+                                <h1><%="Title: #{@question.title} "%></h1>
+
+                                        <h2><%=" Question: #{@question.description}"%></h2>
+                        <p><%="Posted by. #{@user.username} "%></p>
+                                        <br>
+
+                 <% end %>       
+        
+
+                <div class="answer">
+                <h2>Answer</h2>
+                <% if @answers %>
+                        <% @answers.each_with_index do |answer| %>
+
+                                  <p><%="Title: #{answer.title} "%></p>                        
+                                <p><%= answer.description %></p> 
+                        <% end %>
+                <% end %>
+                </div>
+
+                <form method="post" action="/answer">
+                <h2>Answer?</h2>
+                        <input type=text placeholder="Title" name="answer[title]"><br>
+                        <input type=text placeholder="Answer..." name="answer[description]"><br>
+                        <input type="hidden" name="answer[question_id]" value=<%= @question.id %> >
+                        <input type="hidden" name="answer[user_id]" value= <%= current_user.id %> >
+                <br>
+                <input type=submit value="Submit">
+                </form> 
+
+
+                                <div class = "upvote">
+                <% if  Downvote.find_by(user_id: session[:user_id], question_id: @question.id) %>
+
+                                 <form method="post" action="/question/<%=@question.id%>/upvote">
+                                  <input type=submit value="UPVOTE" disabled="true">
+                                </form>
+                <% else %>
+                        <% if  Upvote.find_by(user_id: session[:user_id], question_id: @question.id) %>
+                                <form method="post" action="/question/<%=@question.id%>/upvote/detele">
+                              <input type=submit value="UPVOTED">
+                                </form>
+                        <% else %>
+                                                  <form method="post" action="/question/<%=@question.id%>/upvote">
+                                                   <input type=submit value="UPVOTE">
+                                                 </form>
+                        <% end %> 
+                        <% end %> 
+                        
+                                                 <%# <div><%=@question.upvote.count%>   
+
+                                </div>
+
+                                <div class = "downvote">
+                        <% if  Upvote.find_by(user_id: session[:user_id], question_id: @question.id) %>
+
+                                 <form method="post" action="/question/<%= @question.id %>/downvote">
+                                  <input type=submit value="UPVOTE" disabled="true">
+                                </form>
+                                   <% else %>
+
+                        <% if  Downvote.find_by(user_id: session[:user_id], question_id: @question.id) %>
+                                                  <form method="post" action="/question/<%=@question.id%>/downvote/detele">
+                                                   <input type=submit value="DOWNVOTED">
+                                                 </form>
+                        <% else %>
+                                                  <form method="post" action="/question/<%=@question.id%>/downvote">
+                                                   <input type=submit value="DOWNVOTE">
+                                                 </form>
+                        <% end %> 
+                        <% end %> 
+                                                
+                                                 <%# <p><%=@user.downvotes.count%>
+                                </div>
+
+
+     
+
+   

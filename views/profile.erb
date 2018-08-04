@@ -1,0 +1,49 @@
+           
+            <% if @user.id == current_user.id %>
+                  
+                  <form method="post" action="/question">
+                     <h1><%= "Hi welcome #{current_user.username}" %></h1>
+                            <h2>Add a question !</h2>   
+
+                    <input type=text placeholder="Title" name="question[title]"><br>
+                    <input type=text placeholder="Question..." name="question[description]"><br>
+                    <br>
+                    <input type=submit value="Submit">
+                </form> 
+                <% end %>
+
+    <% if current_user.id != @user.id %>
+                <h1><%= "Welcome to #{@user.username}'s Profile" %></h1>
+                                <br>    
+                
+                        <div class="ask">
+                                <h2><%= " #{@user.username} 's Questions" %></h2>
+                <% @ask.each do |a|%>
+
+                                <br>
+                                
+                                <h2><a href="/question/<%= a.id %>"><%="Title: #{a.title} "%></a></h2>
+                                <br>            
+
+                        
+        <% else %>
+               <% if @user.id == current_user.id %>
+                 
+                                <form onsubmit="return confirm('Are you sure?')" action="/question/<%= a.id %>/delete" method="post">
+                                <input id="hidden" type="hidden" name="_method" value="delete">                                
+                                <input type="submit" value="Delete" data-confirm="You Sure?"> <br>                                               <br>
+
+                                <form action="/question/<%= a.id %>/edit" method="post">
+                                        <input id="hidden" type="hidden" name="_method" value="patch">
+                                        <input type=text placeholder="Title" name="question[title]"><br>
+                                        <input type=text placeholder="question..." name="question[description]"><br>
+                                        <input type="submit" value="EDIT">
+                                </form>
+
+               <% end %>
+            
+
+               
+    <% end  %>
+    </div>  
+<% end  %>

@@ -1,0 +1,10 @@
+
+<form method="post" action="/answer">
+    <h2>Answer?</h2>
+         <input type=text placeholder="Title" name="answer[title]"><br>
+         <input type=text placeholder="Answer..." name="answer[description]"><br>
+        <input type="hidden" name="answer[question_id]" value=<%= @question.id %> >
+         <input type="hidden" name="answer[user_id]" value= <%= current_user.id %> >
+    <input type=submit value="Submit">
+</form> 
+

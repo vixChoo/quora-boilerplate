@@ -1,6 +1,60 @@
 body{
-
-	background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
-	/*background-image: linear-gradient( 135deg, #81FFEF 10%, #F067B4 100%);*/
+background: #ff6e7f;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #bfe9ff, #ff6e7f);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #bfe9ff, #ff6e7f); 
+/* background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%); */
+color:rgb(61, 74, 78);
 
 }	
+
+.greet,.question {
+	text-align: center
+}
+#logo{
+    display: block;
+    width: 100px;
+
+}
+aside{
+	float: left;
+	border:1px solid lightslategray;
+	background-color: azure;
+	text-align: center;
+	padding: 20px;
+	padding-top: 0px;
+	clear: both;
+		
+}
+
+.ask{
+	float: right;
+	border:1px solid lightslategray;
+	background-color: azure;
+	text-align: center;
+	padding: 20px;
+	padding-top: 0px;
+		
+}
+
+.answer{
+	float: left;
+	border:1px solid lightslategray;
+	background-color: azure;
+	text-align: center;
+	padding: 20px;
+	padding-top: 0px;
+		
+}
+
+form{ 
+text-align: center;
+ margin: 0 auto; 
+ 
+}
+
+
+footer{
+	position: relative;
+	bottom: -15px;
+	clear: both;
+}

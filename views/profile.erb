@@ -1,0 +1,119 @@
+<div class="jumbotraon billboard">
+<div class="imga" ></div>
+                   
+                   
+<div class="container">
+
+         <div class="row content">
+
+
+                 <div class="col-sm-12 text-center"> 
+                                <br>
+                                <% if current_user.id != @user.id %>
+                                <h1><%= "Welcome to #{@user.username}'s Profile" %></h1><br>
+               
+                                                                                
+    
+
+        <div class="card w-75" style="border-radius: 10px;  background-color:#f1f1f1;">
+        <div class="card-body">
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">All Questions</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">All Answers</a>
+                        </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"></div>
+                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                                <h2><%= " #{@user.username} 's Questions" %></h2><br>
+                                                <h4><%= " Title" %></h4>
+                                                <hr>
+                                                <% @ask.each do |a|%><br>
+                                                
+                                                 <h2><a href="/question/<%= a.id %>"><%=" #{a.title} "%></a></h2><br>
+
+                                                 <% end  %>
+
+                        </div>
+                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                                <h2><%= " #{@user.username} 's Answers" %></h2>
+                                                <hr>
+                        </div>
+                        </div>
+
+
+                                                                  
+        </div>  
+        </div>  
+      
+</div>  
+</div>  
+          <% end %>
+
+                        <% if @user.id == current_user.id %>
+
+                          <h1><%= "Welcome Back #{@user.username} !" %></h1><br>
+
+        <div class="card w-75" style="border-radius: 10px;  background-color:#f1f1f1;">
+        <div class="card-body">
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">All Questions</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">All Answers</a>
+                        </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"></div>
+                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                                <h2><%= " Your Questions" %></h2><br>
+                                                <h4><%= " Title" %></h4>
+                                                <hr>
+                                                <% @ask.each do |a|%><br>
+                                                
+                                                 <h2><a href="/question/<%= a.id %>"><%=" #{a.title} "%></a></h2><br>
+                                                  <form onsubmit="return confirm('Are you sure?')" action="/question/<%= a.id %>/delete" method="post">
+                                                <input id="hidden" type="hidden" name="_method" value="delete">                                
+                                                <input type="submit" class="btn btn-outline-danger btn-sm" value="Delete" > <br>                                              
+                                                </form>
+                                                 <form action="/question/<%= a.id %>/edit" method="post">
+                                                        <input id="hidden" type="hidden" name="_method" value="patch">
+                                                        <input type=text placeholder="Title" name="question[title]"><br>
+                                                        <input type=text placeholder="question..." name="question[description]"><br>
+                                                        <input type="submit" value="EDIT">
+                                                </form>
+
+
+                                                 <% end  %>
+
+                        </div>
+                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                                <h2><%= " Your Answers" %></h2>
+                                                <hr>
+                        </div>
+                        </div>
+
+
+                                                                  
+        </div>  
+        </div>  
+                          <% end  %>
+
+
+     
+
+        </div>  
+        
+</div>  
+</div>  
+ 

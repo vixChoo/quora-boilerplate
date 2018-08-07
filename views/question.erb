@@ -1,0 +1,50 @@
+        
+
+
+        
+             <div class="container">
+                 <% if @user.id == @question.user_id  %>                   
+
+                        <h1><%="Title: #{@question.title} "%></h1>
+
+                        <h2><%=" Question: #{@question.description}"%></h2>
+                        <p><%="Posted by. #{@user.username} "%></p><br>
+                                        
+
+                 <% end %>       
+        
+
+              
+                
+                <% if @answers %>
+                       
+                          <% @answers.each do |answer| %>
+                                  <p><%="Title: #{answer.title} "%></p>                        
+                                <p><%= answer.description %></p> 
+                        <% end %>
+
+                 <% else %>
+                                  <p><%="There is no answer yet.."%></p>                        
+
+                <% end %>
+       
+
+                <form method="post" action="/answer">
+                <h2>Answer?</h2>
+                        <input type=text placeholder="Title" name="answer[title]"><br>
+                        <input type=text placeholder="Answer..." name="answer[description]"><br>
+                        <input type="hidden" name="answer[question_id]" value=<%= @question.id %> >
+                        <input type="hidden" name="answer[user_id]" value= <%= current_user.id %> > <br>
+                
+                <input type=submit value="Submit">
+                </form> 
+
+
+                </div>
+                </div>
+        </div>
+
+
+     
+
+   

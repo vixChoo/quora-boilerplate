@@ -1,0 +1,9 @@
+<h1>We are editing tweet no. <%= @tweet.id %> </h1>
+
+<h3><%= @tweet.title %></h3>
+
+<form action="/tweet/<%=@tweet.id%>/edit" method="post">
+    <input type="text" placeholder="Title" name="tweet[title]" >
+    <input type="text" placeholder="description" name="tweet[description]">
+    <input type="submit" value="update">
+</form>
